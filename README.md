@@ -51,7 +51,8 @@ API จะเปิดที่ `http://localhost:3000` และอนุญา
 
 เลือก Root Directory เป็น repository นี้ และใช้ NestJS preset ตามการตรวจจับของ Vercel
 `src/main.ts` เป็น entry point ที่ Vercel รองรับ และแอปใช้ `PORT` ที่แพลตฟอร์มกำหนด
-`package.json` กำหนด Node `22.x` เพื่อให้ runtime โหลดแพ็กเกจ NestJS ที่เป็น ESM ได้
+`package.json` กำหนด Node `22.x` ให้ตรงกับเวอร์ชันที่ใช้ทดสอบ
+แพ็กเกจ `@nestjs/config` และ `@nestjs/typeorm` ใช้รุ่น CommonJS ที่รองรับ NestJS 11
 
 ใน Project Settings → Environment Variables ให้ตั้ง `DB_HOST`, `DB_PORT`, `DB_USER`,
 `DB_PASSWORD`, `DB_NAME` และ `FRONTEND_ORIGIN` สำหรับ Production
