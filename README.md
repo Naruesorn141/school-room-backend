@@ -51,6 +51,7 @@ API จะเปิดที่ `http://localhost:3000` และอนุญา
 
 เลือก Root Directory เป็น repository นี้ และใช้ NestJS preset ตามการตรวจจับของ Vercel
 `src/main.ts` เป็น entry point ที่ Vercel รองรับ และแอปใช้ `PORT` ที่แพลตฟอร์มกำหนด
+`package.json` กำหนด Node `22.x` เพื่อให้ runtime โหลดแพ็กเกจ NestJS ที่เป็น ESM ได้
 
 ใน Project Settings → Environment Variables ให้ตั้ง `DB_HOST`, `DB_PORT`, `DB_USER`,
 `DB_PASSWORD`, `DB_NAME` และ `FRONTEND_ORIGIN` สำหรับ Production
@@ -61,6 +62,7 @@ API จะเปิดที่ `http://localhost:3000` และอนุญา
 หาก `/metadata` ตอบ `500` ให้ดู Project → Logs ของคำขอนั้นเพื่อแยกปัญหา
 เช่น environment variables ไม่ครบ หรือเชื่อมต่อฐานข้อมูลไม่ได้
 หลังเปลี่ยน environment variables ต้อง redeploy จึงจะมีผลกับ deployment ใหม่
+หลัง push การแก้โค้ดนี้ ให้ deploy ใหม่แล้วลอง `GET /metadata` อีกครั้ง
 
 ## API หลัก
 
