@@ -40,10 +40,27 @@ DB_PORT=3306
 DB_USER=your_mysql_user
 DB_PASSWORD=your_mysql_password
 DB_NAME=your_db_name
+FRONTEND_ORIGIN=http://localhost:5173
 ```
 
-API จะเปิดที่ `http://localhost:3000` และอนุญาต CORS จาก `http://localhost:5173`
+API จะเปิดที่ `http://localhost:3000` และอนุญาต CORS จาก `FRONTEND_ORIGIN`
+ถ้าไม่กำหนดค่านี้ จะใช้ `http://localhost:5173`
 เก็บ `.env` ไว้ในเครื่องและอย่านำรหัสผ่านจริงขึ้น Git
+
+### ใช้กับ Vercel
+
+เลือก Root Directory เป็น repository นี้ และใช้ NestJS preset ตามการตรวจจับของ Vercel
+`src/main.ts` เป็น entry point ที่ Vercel รองรับ และแอปใช้ `PORT` ที่แพลตฟอร์มกำหนด
+
+ใน Project Settings → Environment Variables ให้ตั้ง `DB_HOST`, `DB_PORT`, `DB_USER`,
+`DB_PASSWORD`, `DB_NAME` และ `FRONTEND_ORIGIN` สำหรับ Production
+ค่า `FRONTEND_ORIGIN` คือ origin ของเว็บที่ deploy เช่น `https://your-frontend.vercel.app`
+ใส่เฉพาะ origin ไม่ต้องมี path หรือ `/` ท้าย URL
+
+ฐานข้อมูล MySQL ต้องรับการเชื่อมต่อจาก Vercel ได้
+หาก `/metadata` ตอบ `500` ให้ดู Project → Logs ของคำขอนั้นเพื่อแยกปัญหา
+เช่น environment variables ไม่ครบ หรือเชื่อมต่อฐานข้อมูลไม่ได้
+หลังเปลี่ยน environment variables ต้อง redeploy จึงจะมีผลกับ deployment ใหม่
 
 ## API หลัก
 
